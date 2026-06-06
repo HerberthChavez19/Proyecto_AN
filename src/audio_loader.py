@@ -11,11 +11,11 @@ La lógica completa se implementará gradualmente.
 """
 
 from __future__ import annotations
-
 from pathlib import Path
 from typing import Tuple
-
 import numpy as np
+#Librosa es una biblioteca popular para el procesamiento de audio en Python.
+import librosa
 
 
 def load_audio(file_path: str | Path) -> Tuple[np.ndarray, int]:
@@ -31,5 +31,11 @@ def load_audio(file_path: str | Path) -> Tuple[np.ndarray, int]:
     tuple[np.ndarray, int]
         Señal de audio y frecuencia de muestreo.
     """
-    raise NotImplementedError("La carga de audio se implementará en la Fase 1.")
+    # Convertimos a string en caso de que entre un objeto Path
+    path_str = str(file_path)
+    
+    # Cargamos el audio manteniendo su frecuencia de muestreo original y en mono
+    signal, sample_rate = librosa.load(path_str, sr=None, mono=True)
+    
+    return signal, sample_rate
 
