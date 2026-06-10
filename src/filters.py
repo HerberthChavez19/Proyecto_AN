@@ -54,3 +54,35 @@ def apply_notch_mask(spectrum: np.ndarray, center_hz: float, bandwidth_hz: float
     
     return espectro_filtrado
 
+
+def apply_lowpass_mask(spectrum: np.ndarray, cutoff_hz: float, sample_rate: int) -> np.ndarray:
+    """
+    Aplica una máscara pasa-bajas para atenuar todas las frecuencias por encima de un corte.
+    
+    Parameters
+    ----------
+    spectrum: np.ndarray
+        El espectro resultante de aplicar la FFT.
+    cutoff_hz: float
+        La frecuencia a partir de la cual se borrará todo (ej. 3000.0 Hz).
+    sample_rate: int
+        Frecuencia de muestreo del audio.
+
+    Returns
+    -------
+    np.ndarray
+        El espectro con las frecuencias altas eliminadas a cero.
+    """
+    N = len(spectrum)
+    freqs = np.fft.fftfreq(N, 1 / sample_rate)
+    espectro_filtrado = spectrum.copy()
+    
+    # Buscamos las frecuencias que sean MAYORES al punto de corte 
+    # (Usamos abs() para afectar la parte positiva y negativa del espectro)
+    mascara_altas = np.abs(freqs) > cutoff_hz
+    
+    # Eliminamos esas frecuencias altas poniéndolas en cero
+    espectro_filtrado[mascara_altas] = 0.0
+    
+    return espectro_filtrado
+
