@@ -11,7 +11,7 @@ Por ahora solo se declaran las funciones con documentación y type hints.
 
 
 import numpy as np
-from scipy.fft import fft, fftfreq
+from scipy.fft import fft, ifft, fftfreq
 from typing import Tuple
 
 def calcular_fft(signal: np.ndarray, sample_rate: int) -> Tuple[np.ndarray, np.ndarray]:
@@ -46,4 +46,21 @@ def calcular_fft(signal: np.ndarray, sample_rate: int) -> Tuple[np.ndarray, np.n
     magnitud = (2.0 / N) * np.abs(yf[:N//2])
     
     return frecuencias_positivas, magnitud
+
+
+def reconstruir_senal(spectrum: np.ndarray) -> np.ndarray:
+    """
+    Reconstruye la señal temporal a partir de su espectro frecuencial (IFFT).
+
+    Parameters
+    ----------
+    spectrum: np.ndarray
+        Arreglo de números complejos resultante de aplicar FFT (y opcionalmente filtros).
+
+    Returns
+    -------
+    np.ndarray
+        Señal reconstruida en el dominio temporal (solo parte real).
+    """
+    return np.real(ifft(spectrum))
 

@@ -1,20 +1,13 @@
+"""Métricas básicas para evaluar resultados de procesamiento de audio.
+
+Este módulo apoyará la Fase 6 y permitirá comparar:
+
+- error cuadrático medio,
+- relación señal-ruido,
+- diferencia entre señal original y procesada.
+"""
+
 from __future__ import annotations
-"""Métricas básicas para evaluar resultados de procesamiento de audio.
-
-Este módulo apoyará la Fase 6 y permitirá comparar:
-
-- error cuadrático medio,
-- relación señal-ruido,
-- diferencia entre señal original y procesada.
-"""
-
-"""Métricas básicas para evaluar resultados de procesamiento de audio.
-
-Este módulo apoyará la Fase 6 y permitirá comparar:
-- error cuadrático medio,
-- relación señal-ruido,
-- diferencia entre señal original y procesada.
-"""
 
 
 import numpy as np
