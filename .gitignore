@@ -34,3 +34,4 @@ data/processed/*
 figures/*
 !figures/.gitkeep
 
+.\GUIA_DEL_PROYECTO.md
